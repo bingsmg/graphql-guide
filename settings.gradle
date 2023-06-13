@@ -1,0 +1,4 @@
+rootProject.name = 'graphql-guide'
+include 'graphql-dgs'
+include 'graphql-spring'
+

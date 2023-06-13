@@ -1,0 +1,14 @@
+apply plugin: 'com.netflix.dgs.codegen'
+
+generateJava {
+    schemaPaths = ["${projectDir}/src/main/resources/schema"]
+    // List of directories containing schema files
+    packageName = 'live.cloverescape.graphqldgs.domain.graphql'
+    // The package name to use to generate sources
+    generateClient = false // Enable generating the type safe query API
+    typeMapping = ["BigDecimal": "java.math.BigDecimal"]
+}
+
+dependencies {
+    implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:4.9.16"
+}

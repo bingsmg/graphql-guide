@@ -1,0 +1,30 @@
+extend type Query {
+    # 根据标识查询书籍
+    bookById(id: ID): Book!
+}
+
+# 书籍
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: AuthorForBook
+    bookType: BookTypeEnum
+}
+
+# 书籍作者
+type AuthorForBook {
+    id: ID
+    # 作者名称
+    firstName: String
+    # 作者姓氏
+    lastName: String
+}
+
+# 书籍类型
+enum BookTypeEnum {
+    ANIMAL
+    NATURE
+    PLANT
+}
+

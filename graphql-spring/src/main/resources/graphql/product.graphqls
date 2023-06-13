@@ -1,0 +1,31 @@
+extend type Query {
+    # 查询所有产品
+    products(match : String) : [Product]
+}
+
+extend type Mutation {
+    # 创建产品
+    createProduct(productInput: ProductInput!) : Product!
+}
+
+"""
+产品类
+一旦我们有了 ProductDTO 对象的列表，PropertyDataFetcher 是默认自动与每个字段关联的数据获取器。
+PropertyDataFetcher，它知道如何根据字段名称遵循 POJO 模式。 如下 product 有一个 name 字段，因此它将尝试寻找一个 public String getName () POJO 方法来获取数据。
+"""
+type Product {
+    id : ID
+    name : String
+    description : String
+    cost : Float
+    tax : Float
+    launchDate(dateFormat : String = "dd, MMM, yyyy") : String
+}
+
+# 输入产品信息
+input ProductInput {
+    name: String!
+    description : String
+    cost : Float
+    tax : Float
+}

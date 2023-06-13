@@ -1,0 +1,28 @@
+extend type Query {
+    # 查询所有部门
+    departments: [Department]
+    # 按标识查询部门
+    department(id: ID!): Department!
+}
+
+extend type Mutation {
+    # 新增部门
+    newDepartment(department: DepartmentInput!): Department
+}
+
+# 部门类型
+type Department {
+    id: ID!
+    name: String!
+    organization: Organization
+    employees: [Employee]
+}
+
+# 输入部门信息
+input DepartmentInput {
+    # 部门名称
+    name: String!
+    # 所属组织名称
+    organizationId: Int
+}
+

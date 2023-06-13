@@ -1,0 +1,32 @@
+extend type Query {
+    # 查询最新贴子
+    recentPosts(count: Int, offset: Int): [Post]!
+}
+
+extend type Mutation {
+    # 创建帖子
+    createPost(postDTO: PostDTO!) : Post!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    text: String!
+    category: String
+    author: AuthorForPost!
+    first_author: AuthorForPost!
+}
+
+input PostDTO {
+    title: String!
+    text: String!
+    category: String
+    authorId: ID!
+}
+
+type AuthorForPost {
+    id: ID!
+    name: String!
+    thumbnail: String
+    posts: [Post]!
+}

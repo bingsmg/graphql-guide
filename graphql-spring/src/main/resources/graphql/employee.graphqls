@@ -1,0 +1,55 @@
+extend type Query {
+    # 查询所有员工
+    employees: [Employee]
+    # 按条件返回员工信息
+    employeesWithFilter(filter: EmployeeFilter): [Employee]
+    # 按标识查询员工
+    employee(id: ID!): Employee!
+
+    employeePart: [EmployeePart]!
+}
+
+extend type Mutation {
+    newEmployee(employee: EmployeeInput!): Employee
+}
+
+# 输入员工信息
+input EmployeeInput {
+    firstName: String!
+    lastName: String!
+    position: String!
+    salary: Int
+    age: Int
+    organizationId: Int!
+    departmentId: Int!
+}
+
+# 员工
+type Employee {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    position: String!
+    salary: Int
+    age: Int
+    department: Department
+    organization: Organization
+}
+
+type EmployeePart {
+    ID: ID!
+    AGE: Int
+}
+
+# 员工过滤条件
+input EmployeeFilter {
+    salary: FilterField
+    age: FilterField
+    position: FilterField
+}
+
+# 过滤属性
+input FilterField {
+    operator: String!
+    value: String!
+}

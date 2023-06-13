@@ -1,0 +1,23 @@
+extend type Query {
+    # 查询所有组织
+    organizations: [Organization]
+    # 按标识查询组织
+    organization(id: ID!): Organization!
+}
+
+extend type Mutation {
+    # 新增一个组织
+    newOrganization(organization: OrganizationInput!): Organization
+}
+
+# 输入组织信息
+input OrganizationInput {
+    name: String!
+}
+
+type Organization {
+    id: ID!
+    name: String!
+    employees: [Employee]
+    departments: [Department]
+}
