@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: sample-app-spring-graphql
@@ -24,10 +27,6 @@ spring:
       hibernate:
         format_sql: true
 
-server:
-  port: 8082
-
-  # application.yml
   mybatis:
     configuration:
       map-underscore-to-camel-case: true

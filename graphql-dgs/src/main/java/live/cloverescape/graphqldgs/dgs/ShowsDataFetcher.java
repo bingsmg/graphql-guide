@@ -8,6 +8,7 @@ import graphql.GraphQLContext;
 import graphql.execution.ExecutionStepInfo;
 import graphql.schema.DataFetchingFieldSelectionSet;
 import live.cloverescape.graphqldgs.entity.Show;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 /**
  * @author seven
  */
+@Slf4j
 @DgsComponent
 public class ShowsDataFetcher {
     private final List<Show> shows = List.of(
@@ -31,14 +33,14 @@ public class ShowsDataFetcher {
         DataFetchingFieldSelectionSet selectionSet = env.getSelectionSet();
         selectionSet.getFields().forEach(
                 selectedField -> {
-                    System.out.println(selectedField.getObjectTypes());
-                    System.out.println(selectedField.getName());
+                    log.info(selectedField.getObjectTypes().toString());
+                    log.info(selectedField.getName());
                 });
-        GraphQLContext graphQlContext = env.getGraphQlContext();
-        Object source = env.getSource();
-        Object root = env.getRoot();
-        Map<String, Object> arguments = env.getArguments();
-        ExecutionStepInfo executionStepInfo = env.getExecutionStepInfo();
+        log.info(env.getGraphQlContext().toString());
+        log.info(env.getArguments().toString());
+        log.info(env.getRoot());
+        log.info(env.getSource());
+        log.info("\n" + env.getExecutionStepInfo());
 
         if (titleFilter == null) {
             return shows;
