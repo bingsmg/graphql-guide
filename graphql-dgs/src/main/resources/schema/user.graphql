@@ -1,0 +1,11 @@
+extend type Query {
+    users:[User!]!
+    userPartInfo:[User!]!
+}
+
+type User {
+    id: ID,
+    name: String!,
+    age: Int,
+    email: String
+}

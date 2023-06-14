@@ -1,25 +1,24 @@
-package live.cloverescape.graphqldgs.dgs;
+package live.cloverescape.graphqldgs.service.impl;
 
-import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
-import com.netflix.graphql.dgs.DgsQuery;
-import com.netflix.graphql.dgs.InputArgument;
-import graphql.GraphQLContext;
-import graphql.execution.ExecutionStepInfo;
 import graphql.schema.DataFetchingFieldSelectionSet;
 import live.cloverescape.graphqldgs.entity.Show;
+import live.cloverescape.graphqldgs.service.IShowService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author seven
+ * @author weibb
  */
 @Slf4j
-@DgsComponent
-public class ShowsDataFetcher {
+@Service
+@RequiredArgsConstructor
+public class ShowServiceImpl implements IShowService {
+
     private final List<Show> shows = List.of(
             new Show("Stranger Things", 2016),
             new Show("Ozark", 2017),
@@ -28,8 +27,8 @@ public class ShowsDataFetcher {
             new Show("Orange is the New Black", 2013)
     );
 
-    @DgsQuery
-    public List<Show> shows(@InputArgument String titleFilter, DgsDataFetchingEnvironment env) {
+    @Override
+    public List<Show> listShows(String titleFilter, DgsDataFetchingEnvironment env) {
         DataFetchingFieldSelectionSet selectionSet = env.getSelectionSet();
         selectionSet.getFields().forEach(
                 selectedField -> {
@@ -49,4 +48,3 @@ public class ShowsDataFetcher {
         return shows.stream().filter(s -> s.getTitle().contains(titleFilter)).collect(Collectors.toList());
     }
 }
-

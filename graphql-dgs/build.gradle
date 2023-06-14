@@ -11,4 +11,5 @@ generateJava {
 
 dependencies {
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:4.9.16"
+    implementation "com.baomidou:mybatis-plus-boot-starter:3.5.3.1"
 }

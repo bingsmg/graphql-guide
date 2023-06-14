@@ -1,7 +1,7 @@
 package live.cloverescape.graphqldgs.entity;
 
 /**
- * @author seven
+ * @author weibb
  */
 public class Show {
 
